@@ -1,6 +1,9 @@
 #include "node.h"
 #include "list.h"
 #include <cstddef>
+#include <stdlib.h>
+#include <iostream>
+using namespace std;
 
 list::list(){
 	this->head = NULL;
@@ -16,18 +19,15 @@ list::list(node* thisHead, node* thisTail){
 }
 
 int list::getSize(){
-	int i = 0;
+	int count = 1;
 	this->current = this->head;
-	node* nextNode = this->head->getNext();
-	do{
 
-		i++;
-		this->current = nextNode;
-		nextNode = this->current->getNext();
+	while(this->current != this->tail){
+		this->current = this->current->getNext();
+		count++;
+	}
 
-	}while(this->current != this->tail);
-
-	return i;
+	return count;
 }
 
 node* list::getHead(){
@@ -38,14 +38,14 @@ node* list::getTail(){
         return this->tail;
 }
 
-void list::setHead(node* thisHead){
+void list::insertHead(node* thisHead){
 	node* temp = this->head;
 	this->head = thisHead;
-	
+	this->head->setNext(temp);
 	this->tail->setNext(this->head);
 }
 
-void list::setTail(node* thisTail){
+void list::insertTail(node* thisTail){
 	thisTail->setNext(this->tail->getNext());
 	node* nextNode;	
 
