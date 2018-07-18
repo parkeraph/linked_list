@@ -16,5 +16,6 @@ class list{
                 node* getHead();
                 node* getTail();
            //   void intertAtIndex(node* thisNode, int index);
+           	void printList();
 };
 

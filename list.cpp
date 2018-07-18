@@ -26,7 +26,9 @@ int list::getSize(){
 		this->current = this->current->getNext();
 		count++;
 	}
-
+	
+	//reset cur
+	this->current = this->head;
 	return count;
 }
 
@@ -59,6 +61,18 @@ void list::insertTail(node* thisTail){
 	this->tail = thisTail;
 }
 
+void list::printList(){
+	this->current = this->head;
+	int size = this->getSize();
+	int i = 0;	
 
+	do{
+		cout << this->current->getData() << "-->";
+		this->current = this->current->getNext();
+		i++;
 
+	}while(i < size);
+	
+	cout << "END" << endl;
+}
 
