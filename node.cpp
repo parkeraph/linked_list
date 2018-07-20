@@ -9,7 +9,6 @@ node::node(node* thisNext, int thisData){
 
 node::node(){
 	this->data = 0;
-	this->next = NULL;
 }
 
 void node::setData(int thisData){

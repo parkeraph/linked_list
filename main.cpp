@@ -2,28 +2,22 @@
 #include "list.h"
 #include <stdlib.h>
 #include <iostream>
+#include <stdio.h>
+#include <time.h>
 using namespace std;
 
 int main(){
-        node* secondNode = new node();
-	secondNode->setData(30);
-	node* firstNode = new node(secondNode, 29);
+	list* myList = new list();
+	int randInt;	
 
-	cout << firstNode->getData() << endl;
-	
-	node* firstDupe	= firstNode->getNext();
 
-	cout << firstDupe->getData() << endl;
+	for(int i = 1;i < 10; i++){
+		srand(time(NULL));
+		randInt = rand() % 10 + 1;
+		myList->insertTail(randInt);
+	}
+	
+	myList->printList();
 
-	list* myList = new list(firstNode, secondNode);
-	cout << myList->getSize() << endl;	
-	
-	node* newFirstNode = new node();
-	newFirstNode->setData(28);
-	
-	myList->insertHead(newFirstNode);
-
-	cout << myList->getSize() << endl;
-	
         return 0;
 }  
