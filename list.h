@@ -6,16 +6,17 @@ class list{
                 node* head;
                 node* tail;
                 node* current;
+                void setHead(node* thisNode);
+                void setTail(node* thisNode);
         public:
                 list(int headData, int tailData);
-		list();
-		int getSize();
+				list();
+				int getSize();
                 void insertHead(int thisData);
-
                 void insertTail(int thisData);
                 node* getHead();
                 node* getTail();
-           //   void intertAtIndex(node* thisNode, int index);
-           	void printList();
+           		int insertAtIndex(int index, int thisData);
+           		void printList();
 };
 

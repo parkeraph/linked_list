@@ -31,15 +31,25 @@ list::list(){
 
 int list::getSize(){
 	this->current = this->head;
-	int i = 0;	
+	int i = 2;	
 
-	while(this->current->getNext() != this->head){
-		this->current->getNext();
+	do{
+		this->current = this->current->getNext();
 		i++;
-	}
+	}while(this->current != this->tail);
 	
 	this->current = this->head;
 	return i;
+}
+
+//this only sets the member variable, all 
+//pointers must be config'd first
+void list::setHead(node* thisNode){
+	this->head = thisNode;
+}
+
+void list::setTail(node* thisNode){
+	this->tail = thisNode;
 }
 
 node* list::getHead(){
@@ -62,6 +72,40 @@ void list::insertTail(int thisData){
 	this->tail->setNext(newNode);
 	this->tail = newNode;
 	this->current = this->head;		
+}
+
+//returns 1 for user error (insert out of bounds)
+//returns 0 for succesful insert 
+int list::insertAtIndex(int index, int thisData){
+	int j = 1;
+	int size = this->getSize();
+	this->current = this->head;
+	node* temp;
+	node* newNode = new node(temp, thisData);
+
+	if((index > this->getSize()) or (index < 1)){
+		return 1;
+	}
+
+	//insert at head
+	if(index == 1){
+		this->tail->setNext(newNode);
+		newNode->setNext(this->head);
+		this->setHead(newNode);
+		return 0;
+	}
+
+	while(j < index){
+		temp = this->current;
+		this->current = this->current->getNext();	
+		j++;
+	}
+	
+	newNode->setNext(this->current);
+	temp->setNext(newNode);
+
+	return 0;
+	
 }
 
 void list::printList(){
